@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CompanySearchContainer from './containers/CompanySearchContainer';
+import CompanyContainer from "./containers/CompanyContainer";
+import PortfolioContainer from "./containers/PortfolioContainer";
+import { NavbarComponent } from './components/NavbarComponent'
+import LandingPageContainer from './containers/LandingPageContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavbarComponent />
+      <Switch>
+        <Route path="/portfolio_planner_client" exact component={LandingPageContainer} />
+        <Route path="/search" exact component={CompanySearchContainer} />
+        <Route path="/company-overview/:id" exact component={CompanyContainer} />
+        <Route path="/portfolio" exact component={PortfolioContainer} />
+      </Switch>
+    </Router>
   );
 }
 
